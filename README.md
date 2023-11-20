@@ -397,19 +397,29 @@ Jalankan command ini pada client :
 ab -n 200 -c 10 http://www.granz.channel.it24.com/ 
 ```
 ### Output
+
 1.Generic Hash :
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/9e48f12d-6efc-421d-9a34-5940d734fffd)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/3154a4c9-9c30-4e7f-93ec-7ceed77f98a7)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/9abef6f9-8c7a-4e09-9ee5-2655402a5758)
 
 2.IP Hash :
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/1aa659de-1a1b-464e-9199-4ea008882584)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/0b53cb0e-3af5-42ba-8af7-bfc623bdd947)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/21382480-58e2-4eca-8e0c-8bf3cc370b01)
 
 3.Least :
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/3b628a3a-7ea5-4987-a154-ff309aacbe25)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/2a7c7fd5-6f2f-4423-9b14-203ec386eab1)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/e6f7b517-3108-4497-bcb2-8505a107f0a0)
 
 ### Soal 9
@@ -422,15 +432,25 @@ ab -n 100 -c 10 http://www.granz.channel.it24.com/
 ### Output
 
 1,2,3 Worker:
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/aa9fefda-dcc1-4a56-8848-bbd482ad0e28)
+
 (1)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/7bcc9c12-e010-4e18-8f7e-9f5145a2c1bd)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/3fba3c90-0ef0-4123-b415-218dab4a34d4)
+
 (2)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/1baf6a79-d8d9-45cf-b097-c35a3b88a14e)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/0dd5c645-2a0f-417d-ac33-e40db9dbc571)
+
 (3)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/467d7c31-b9b8-43b1-a2e0-a1c5851ffde9)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/244aa1a4-5227-4926-b46d-06d753b96d6a)
 
 ### Soal 10
@@ -448,9 +468,13 @@ auth_basic "Restricted Content";
 auth_basic_user_file /etc/nginx/rahasisakita/htpasswd;
 ```
 ### Output
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/f45efb10-41be-44c8-97a1-93aedbadd9d6)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/8a530dd0-9fd6-4749-8403-ee7607a8c0f1)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/db160419-ae8c-4242-b946-c916a89ec3c3)
+
 ![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/4add1d39-b636-4ecb-8e71-294228f82407)
 
 ### Soal 11
