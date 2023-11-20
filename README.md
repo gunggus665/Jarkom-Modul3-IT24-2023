@@ -13,90 +13,110 @@
 #### Aura (DHCP Relay)
 ```
 auto eth0
-iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+iface eth0 inet dhcp
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.173.0.0/16
+
+auto eth1
+iface eth1 inet static
+	address 192.173.1.0
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 192.173.2.0
+	netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+	address 192.173.3.0
+	netmask 255.255.255.0
+
+auto eth4
+iface eth4 inet static
+	address 192.173.4.0
+	netmask 255.255.255.0
+
 ```
 #### Himmel (DHCP Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.1.2
+	netmask 255.255.255.0
+	gateway 192.173.1.0
+
 ```
 #### Heiter (DNS Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.1.3
+	netmask 255.255.255.0
+	gateway 192.173.1.0
 ```
 #### Denken (Database Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.2.2
+	netmask 255.255.255.0
+	gateway 192.173.2.0
 ```
 #### Eisen (Load Balancer)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.2.3
+	netmask 255.255.255.0
+	gateway 192.173.2.0
 ```
 #### Frieren (Laravel Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.4.3
+	netmask 255.255.255.0
+	gateway 192.173.4.0
 ```
 #### Flamme (Laravel Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.4.2
+	netmask 255.255.255.0
+	gateway 192.173.4.0
 ```
 #### Fern (Laravel Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.4.1
+	netmask 255.255.255.0
+	gateway 192.173.4.0
 ```
 #### Lawine (PHP Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.3.3
+	netmask 255.255.255.0
+	gateway 192.173.3.0
 ```
 #### Linie (PHP Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.3.2
+	netmask 255.255.255.0
+	gateway 192.173.3.0
 ```
 #### Lugner (PHP Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 
-	netmask 
-	gateway 
+	address 192.173.3.1
+	netmask 255.255.255.0
+	gateway 192.173.3.0
 ```
 #### Revolte, Richter, Sein, dan Stark (Client)
 ```
