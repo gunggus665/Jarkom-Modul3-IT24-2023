@@ -14,26 +14,25 @@
 ```
 auto eth0
 iface eth0 inet dhcp
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.173.0.0/16
 
 auto eth1
 iface eth1 inet static
-	address 192.173.1.0
+	address 192.245.1.0
 	netmask 255.255.255.0
 
 auto eth2
 iface eth2 inet static
-	address 192.173.2.0
+	address 192.245.2.0
 	netmask 255.255.255.0
 
 auto eth3
 iface eth3 inet static
-	address 192.173.3.0
+	address 192.245.3.0
 	netmask 255.255.255.0
 
 auto eth4
 iface eth4 inet static
-	address 192.173.4.0
+	address 192.245.4.0
 	netmask 255.255.255.0
 
 ```
@@ -41,82 +40,82 @@ iface eth4 inet static
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.1.2
+	address 192.245.1.2
 	netmask 255.255.255.0
-	gateway 192.173.1.0
+	gateway 192.245.1.0
 
 ```
 #### Heiter (DNS Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.1.3
+	address 192.245.1.3
 	netmask 255.255.255.0
-	gateway 192.173.1.0
+	gateway 192.245.1.0
 ```
 #### Denken (Database Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.2.2
+	address 192.245.2.2
 	netmask 255.255.255.0
-	gateway 192.173.2.0
+	gateway 192.245.2.0
 ```
 #### Eisen (Load Balancer)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.2.3
+	address 192.245.2.3
 	netmask 255.255.255.0
-	gateway 192.173.2.0
+	gateway 192.245.2.0
 ```
 #### Frieren (Laravel Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.4.3
+	address 192.245.4.3
 	netmask 255.255.255.0
-	gateway 192.173.4.0
+	gateway 192.245.4.0
 ```
 #### Flamme (Laravel Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.4.2
+	address 192.245.4.2
 	netmask 255.255.255.0
-	gateway 192.173.4.0
+	gateway 192.245.4.0
 ```
 #### Fern (Laravel Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.4.1
+	address 192.245.4.1
 	netmask 255.255.255.0
-	gateway 192.173.4.0
+	gateway 192.245.4.0
 ```
 #### Lawine (PHP Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.3.3
+	address 192.245.3.3
 	netmask 255.255.255.0
-	gateway 192.173.3.0
+	gateway 192.245.3.0
 ```
 #### Linie (PHP Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.3.2
+	address 192.245.3.2
 	netmask 255.255.255.0
-	gateway 192.173.3.0
+	gateway 192.245.3.0
 ```
 #### Lugner (PHP Worker)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.173.3.1
+	address 192.245.3.1
 	netmask 255.255.255.0
-	gateway 192.173.3.0
+	gateway 192.245.3.0
 ```
 #### Revolte, Richter, Sein, dan Stark (Client)
 ```
@@ -250,16 +249,16 @@ Client mendapatkan DNS dari Heiter dan dapat terhubung dengan internet melalui D
 
 Tambahkan option broadcast dan domain name pada configurasi :
 ```
-subnet 192.173.3.0 netmask 255.255.255.0 {
+subnet 192.245.3.0 netmask 255.255.255.0 {
     ...
     option broadcast-address 192.245.3.255;
     option domain-name-servers 192.245.1.3;
     ...
 }
 
-subnet 192.173.4.0 netmask 255.255.255.0 {
-    option broadcast-address 192.173.4.255;
-    option domain-name-servers 192.173.1.3;
+subnet 192.245.4.0 netmask 255.255.255.0 {
+    option broadcast-address 192.245.4.255;
+    option domain-name-servers 192.245.1.3;
 } 
 ```
 
@@ -383,7 +382,7 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      riegel.canyon.it24.com.
-@       IN      A       192.173.2.3	     ; IP LB Eiken
+@       IN      A       192.245.2.3	     ; IP LB Eiken
 www     IN      CNAME   riegel.canyon.it24.com.' > /etc/bind/sites/riegel.canyon.it24.com
 
 echo '
