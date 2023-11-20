@@ -310,7 +310,7 @@ lakukan download dan unzip
 wget -O '/var/www/granz.channel.it24.com' 'https://drive.google.com/u/0/uc?id=1ViSkRq7SmwZgdK64eRbr5Fm1EGCTPrU1&export=download'
 unzip -o /var/www/granz.channel.it24.com -d /var/www/
 rm /var/www/granz.channel.it24.com
-mv /var/www/ /var/www/granz.channel.a09.com
+mv /var/www/ /var/www/granz.channel.it24.com
 ```
 
 setelah itu lakukan konfigurasi pada nginx :
