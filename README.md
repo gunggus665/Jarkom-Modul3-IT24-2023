@@ -1,4 +1,4 @@
-![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/c71c228a-0bb5-4317-847c-0a00da349948)# Jarkom-Modul3-IT24-2023
+# Jarkom-Modul3-IT24-2023
 
 ## Anggota Kelompok
 
