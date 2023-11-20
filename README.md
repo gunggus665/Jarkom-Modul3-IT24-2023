@@ -1,4 +1,4 @@
-# Jarkom-Modul3-IT24-2023
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/c71c228a-0bb5-4317-847c-0a00da349948)# Jarkom-Modul3-IT24-2023
 
 ## Anggota Kelompok
 
@@ -301,6 +301,251 @@ subnet 192.245.4.0 netmask 255.255.255.0 {
 ### Result
 ![seindhcp](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100693456/6cae0134-796c-4bfa-b8c7-b30f866caea3)
 ![revoltedhcp](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100693456/90a7bb25-466b-44ea-b9ac-d90ed18409f7)
+
+### Soal 6
+Pada masing-masing worker PHP, lakukan konfigurasi virtual host untuk website berikut dengan menggunakan php 7.3
+
+lakukan download dan unzip
+```
+wget -O '/var/www/granz.channel.it24.com' 'https://drive.google.com/u/0/uc?id=1ViSkRq7SmwZgdK64eRbr5Fm1EGCTPrU1&export=download'
+unzip -o /var/www/granz.channel.it24.com -d /var/www/
+rm /var/www/granz.channel.it24.com
+mv /var/www/ /var/www/granz.channel.a09.com
+```
+
+setelah itu lakukan konfigurasi pada nginx :
+```
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/granz.channel.it24.com
+ln -s /etc/nginx/sites-available/granz.channel.it24.com /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+
+echo 'server {
+    listen 80;
+    server_name _;
+
+    root /var/www/granz.channel.it24.com;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;  # Sesuaikan versi PHP dan socket
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}' > /etc/nginx/sites-available/granz.channel.it24.com
+
+service nginx restart
+```
+
+### Output
+
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/7b471959-17d9-473f-a567-31edd1b47534)
+
+
+### Soal 7
+Kepala suku dari Bredt Region memberikan resource server sebagai berikut: Lawine, 4GB, 2vCPU, dan 80 GB SSD. Linie, 2GB, 2vCPU, dan 50 GB SSD. Lugner 1GB, 1vCPU, dan 25 GB SSD. Aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second.
+
+Pada DNS Server arahkan domain ke IP Load Balancer Eisen
+```
+echo ';
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     riegel.canyon.it24.com. root.riegel.canyon.it24.com. (
+                        2               ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      riegel.canyon.it24.com.
+@       IN      A       192.173.2.3	     ; IP LB Eiken
+www     IN      CNAME   riegel.canyon.it24.com.' > /etc/bind/sites/riegel.canyon.it24.com
+
+echo '
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     granz.channel.it24.com. root.granz.channel.it24.com. (
+                         2	        ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      granz.channel.it24.com.
+@       IN      A       192.245.2.3     ; IP LB Eiken
+www     IN      CNAME   granz.channel.it24.com.' > /etc/bind/sites/granz.channel.it24.com
+```
+Jalankan command berikut pada client :
+```
+ab -n 1000 -c 100 http://www.granz.channel.it24.com/
+```
+
+### Output 
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/4674cc1e-d811-453a-8492-7ac5c8df7d1f)
+
+### Soal 8
+Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut: 1. Nama Algoritma Load Balancer; 2. Report hasil testing pada Apache Benchmark; 3.Grafik request per second untuk masing masing algoritma; 4. Analisis
+
+Jalankan command ini pada client :
+```
+ab -n 200 -c 10 http://www.granz.channel.it24.com/ 
+```
+### Output
+1.Generic Hash :
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/9e48f12d-6efc-421d-9a34-5940d734fffd)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/3154a4c9-9c30-4e7f-93ec-7ceed77f98a7)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/9abef6f9-8c7a-4e09-9ee5-2655402a5758)
+
+2.IP Hash :
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/1aa659de-1a1b-464e-9199-4ea008882584)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/0b53cb0e-3af5-42ba-8af7-bfc623bdd947)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/21382480-58e2-4eca-8e0c-8bf3cc370b01)
+
+3.Least :
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/3b628a3a-7ea5-4987-a154-ff309aacbe25)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/2a7c7fd5-6f2f-4423-9b14-203ec386eab1)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/e6f7b517-3108-4497-bcb2-8505a107f0a0)
+
+### Soal 9
+Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire. (9)
+
+Lakukan command ini : 
+```
+ab -n 100 -c 10 http://www.granz.channel.it24.com/ 
+```
+### Output
+
+1,2,3 Worker:
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/aa9fefda-dcc1-4a56-8848-bbd482ad0e28)
+(1)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/7bcc9c12-e010-4e18-8f7e-9f5145a2c1bd)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/3fba3c90-0ef0-4123-b415-218dab4a34d4)
+(2)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/1baf6a79-d8d9-45cf-b097-c35a3b88a14e)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/0dd5c645-2a0f-417d-ac33-e40db9dbc571)
+(3)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/467d7c31-b9b8-43b1-a2e0-a1c5851ffde9)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/244aa1a4-5227-4926-b46d-06d753b96d6a)
+
+### Soal 10
+Selanjutnya coba tambahkan konfigurasi autentikasi di LB dengan dengan kombinasi username: “netics” dan password: “ajkyyy”, dengan yyy merupakan kode kelompok. Terakhir simpan file “htpasswd” nya di /etc/nginx/rahasisakita/
+
+masukkan script sebagai berikut :
+```
+mkdir /etc/nginx/rahasisakita
+htpasswd -c /etc/nginx/rahasisakita/htpasswd netics
+##masukkan ajkit24 sebagai password
+```
+Berikutnya tambahkan command pada Nginx
+```
+auth_basic "Restricted Content";
+auth_basic_user_file /etc/nginx/rahasisakita/htpasswd;
+```
+### Output
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/f45efb10-41be-44c8-97a1-93aedbadd9d6)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/8a530dd0-9fd6-4749-8403-ee7607a8c0f1)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/db160419-ae8c-4242-b946-c916a89ec3c3)
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/4add1d39-b636-4ecb-8e71-294228f82407)
+
+### Soal 11
+Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. (11) hint: (proxy_pass)
+
+Tambahkan konfigurasi pada Nginx :
+```
+echo 'upstream worker {
+    server 192.245.3.1;
+    server 192.245.3.2;
+    server 192.245.3.3;
+}
+
+server {
+    listen 80;
+    server_name granz.channel.it24.com www.granz.channel.it24.com;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        proxy_pass http://worker;
+    }
+
+    location ~ /its {
+        proxy_pass https://www.its.ac.id;
+        proxy_set_header Host www.its.ac.id;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}' > /etc/nginx/sites-available/lb_php
+```
+lakukan testing pada client 
+```
+lynx www.granz.channel.it24.com/its
+```
+### Output
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/a9f17f2d-9a53-4908-ac02-07fc562f14d2)
+
+## Soal 12
+Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168.
+
+Jalankan script ini :
+```
+echo 'upstream worker {
+    server 192.245.3.1;
+    server 192.245.3.2;
+    server 192.245.3.3;
+}
+
+server {
+    listen 80;
+    server_name granz.channel.it24.com www.granz.channel.it24.com;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        allow 192.245.3.69;
+        allow 192.245.3.70;
+        allow 192.245.4.167;
+        allow 192.245.4.168;
+        deny all;
+        proxy_pass http://worker;
+    }
+
+    location /its {
+        proxy_pass https://www.its.ac.id;
+        proxy_set_header Host www.its.ac.id;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}' > /etc/nginx/sites-available/lb_php
+```
+### Ouput IP Deny
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/22782720-8c69-4dac-b115-6eee799d2ffe)
+
+Lakukan command ini untuk IP allow : 
+```
+location / {
+    allow 192.245.3.69;
+    allow 192.245.3.70;
+    allow 192.245.3.19;
+    allow 192.245.4.167;
+    allow 192.245.4.168;
+    deny all;
+    proxy_pass http://worker;
+}
+```
+### Output IP Allow
+![image](https://github.com/gunggus665/Jarkom-Modul3-IT24-2023/assets/100349628/fd1b5c82-cd1d-4842-832c-13ef073e8944)
+
+
 
 ## Soal 13
 > Semua data yang diperlukan, diatur pada Denken dan harus dapat diakses oleh Frieren, Flamme, dan Fern. (13)
